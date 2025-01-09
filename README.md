@@ -44,3 +44,7 @@ Welcome to the **Social Media Analyzer Tool** repository! This project is a comp
    git clone https://github.com/Rishabh-27-Devloper/langflow-python-RAG-LLM.git
    cd langflow-python-RAG-LLM
    ```
+## 🌏 AWS Deployment
+
+1. Go to Link:
+   http://18.116.166.197:8000/
