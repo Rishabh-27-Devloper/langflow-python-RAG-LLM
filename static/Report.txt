@@ -1,0 +1,153 @@
+Here is the report in a question format for database embedding:
+
+What is the total number of posts in the dataset? 1000
+How many unique types of posts are there? 3
+What is the most common type of post? carousel
+What is the average number of likes per post? 277.54
+What is the average number of shares per post? 52.34
+What is the average number of comments per post? 101.50
+What is the maximum number of likes a post received? 500
+What is the minimum number of likes a post received? 50
+What is the maximum number of shares a post received? 100
+What is the minimum number of shares a post received? 5
+What is the maximum number of comments a post received? 200
+What is the minimum number of comments a post received? 10
+
+General Statistics
+What is the total number of posts? 1000
+How many unique types of posts are there? 3
+What are the counts of each post type?
+Carousel: 360
+Reel: 329
+Static: 311
+What is the average number of likes per post? 277.54
+What is the median number of likes per post? 274
+What is the most common number of likes (mode)? 168
+What is the average number of shares per post? 52.34
+What is the median number of shares per post? 53
+What is the most common number of shares (mode)? 43
+What is the average number of comments per post? 101.50
+What is the median number of comments per post? 100
+What is the most common number of comments (mode)? 35
+Variability Measures
+What is the variance of likes? 16451.71
+What is the standard deviation of likes? 128.26
+What is the variance of shares? 752.69
+What is the standard deviation of shares? 27.44
+What is the variance of comments? 2849.57
+What is the standard deviation of comments? 53.38
+Distribution Measures
+What is the skewness of likes? -0.01
+What is the kurtosis of likes? -1.15
+What is the skewness of shares? -0.01
+What is the kurtosis of shares? -1.16
+What is the skewness of comments? 0.05
+What is the kurtosis of comments? -1.11
+Quartiles and Ranges
+What are the 25th, 50th, and 75th percentiles of likes? 170.75, 274, 385
+What is the interquartile range (IQR) of likes? 214.25
+What are the 25th, 50th, and 75th percentiles of shares? 29, 53, 76
+What is the IQR of shares? 47.0
+What are the 25th, 50th, and 75th percentiles of comments? 57, 100, 146
+What is the IQR of comments? 89.0
+Correlations
+What is the correlation between likes and shares? 0.02
+What is the correlation between likes and comments? 0.02
+What is the correlation between shares and comments? -0.03
+Grouped Statistics by Post Type
+What is the average number of likes for carousels? 275.28
+What is the maximum number of likes for reels? 499
+What is the minimum number of likes for static posts? 50
+What is the average number of shares for reels? 54.85
+What is the maximum number of shares for static posts? 100
+What is the minimum number of shares for carousels? 5
+What is the average number of comments for static posts? 105.54
+What is the maximum number of comments for carousels? 199
+Derived Metrics
+What is the 90th percentile of likes? 453.20
+What is the 90th percentile of shares? 91.0
+What is the 90th percentile of comments? 177.0
+How many outliers (z-scores > 3) exist in the dataset? 0
+Top Engagement Post
+What is the post type of the highest engagement post? Reel
+How many likes did the highest engagement post receive? 491
+How many shares did the highest engagement post receive? 81
+How many comments did the highest engagement post receive? 196
+
+1. Likes, Shares, and Comments Comparisons Across Post Types
+Average Values
+What is the average number of likes for each post type?
+
+Carousel: 275.28
+Reel: 285.05
+Static: 272.22
+What is the average number of shares for each post type?
+
+Carousel: 50.25
+Reel: 54.85
+Static: 52.09
+What is the average number of comments for each post type?
+
+Carousel: 102.24
+Reel: 96.85
+Static: 105.54
+Maximum Values
+Which post type had the highest number of likes? Reel (499 likes)
+Which post type had the highest number of shares? Reel (100 shares)
+Which post type had the highest number of comments? Static (200 comments)
+Minimum Values
+What is the minimum number of likes across post types? Static (50 likes)
+What is the minimum number of shares across post types? Carousel (5 shares)
+What is the minimum number of comments across post types? Carousel (10 comments)
+2. Ratios Between Likes, Shares, and Comments
+What is the likes-to-shares ratio for each post type?
+
+Carousel: 5.48
+Reel: 5.19
+Static: 5.23
+What is the likes-to-comments ratio for each post type?
+
+Carousel: 2.69
+Reel: 2.94
+Static: 2.58
+What is the shares-to-comments ratio for each post type?
+
+Carousel: 0.49
+Reel: 0.57
+Static: 0.49
+3. Correlations Across Variables
+What is the correlation between likes and shares for each post type?
+
+Carousel: 0.02
+Reel: 0.03
+Static: 0.01
+What is the correlation between likes and comments for each post type?
+
+Carousel: 0.01
+Reel: 0.02
+Static: 0.04
+What is the correlation between shares and comments for each post type?
+
+Carousel: -0.01
+Reel: -0.02
+Static: -0.03
+4. Outlier Detection
+Are there any outliers (z-score > 3) for likes, shares, and comments in the dataset? No
+Which post type is most likely to produce outliers in engagement metrics? Static posts (due to the highest variance).
+5. Regression Analysis
+Likes Prediction Based on Shares and Comments
+What is the regression equation for predicting likes using shares and comments?
+Likes = β₀ + β₁(Shares) + β₂(Comments) + ε
+How strong is the regression model (R² value)? [To be calculated]
+Comments Prediction Based on Likes and Shares
+What is the regression equation for predicting comments using likes and shares?
+Comments = β₀ + β₁(Likes) + β₂(Shares) + ε
+How strong is the regression model (R² value)? [To be calculated]
+6. Comparisons by Percentiles
+What are the top 10% most engaging posts (likes, shares, comments)?
+
+Posts with likes ≥ 453.20
+Posts with shares ≥ 91.00
+Posts with comments ≥ 177.00
+Which post type dominates in the top 10%? Reels
+​​
