@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Analyzer Tool</title>
+    <link rel="stylesheet" href ="{{ url_for('static',filename='style.css')}}">
+
+    <!--    google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+</head>
+<style>
+* {
+    margin: 0;
+    padding-bottom: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: #666;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #333;
+}
+
+.menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.menu-button svg {
+    width: 24px;
+    height: 24px;
+    fill: #666;
+}
+
+.mobile-menu {
+    display: none;
+    padding: 12px 0;
+}
+
+.mobile-menu a {
+    display: block;
+    padding: 12px;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.mobile-menu a:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Mobile menu animation classes */
+.mobile-menu.active {
+    display: block;
+    animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+}
+</style>
+
+<body>
+     <nav>
+        <div class="nav-container">
+            <div class="nav-content">
+                <a href="#" class="logo">Analyzer</a>
+                <!-- Desktop Navigation -->
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="#">Tutorial</a>
+                    <a href="/analyse">Tools</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="menu-button" aria-label="Toggle menu">
+                    <svg class="menu-icon" viewBox="0 0 24 24">
+                        <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="close-icon" viewBox="0 0 24 24" style="display: none;">
+                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-menu">
+                <a href="/">Home</a>
+                <a href="#">Tutorial</a>
+                <a href="/analyse">Tools</a>
+            </div>
+        </div>
+    </nav>
+    <hr class="styled-line">
+
+    <div class="container" style ="padding-top:60px">
+        <div class="text-section">
+            <h1 style="font-size: 71px; text-align: left;" >
+            <span class = "shortcode" >Know what's working</span> on social with <span class = "shortcode">Us</span>
+            </h1>
+            <p style="text-align: left; padding-left: 10px;">See what’s working, improve what’s not, and get results. Smart data and beautiful reports make it easy. No spreadsheets required.</p>
+        </div>
+        <div class="image-section">
+            <img src="/static/Statistical-Analysis-Methods.jpg" alt="Placeholder Image" style = "padding-top:15px">
+        </div>
+    </div>
+
+    <div class="slogan">
+        <h1>Use Our Site and get Analysis in just Few Clicks </h1>
+    </div>
+    <hr style="width: 10%;">
+
+    <div class="tutorial" style="text-align: center;padding-top: 20px; padding-bottom: 40px;">
+        
+        <button class = "tutorial-button" > Watch Tutorial <span style="font-size: 14px; text-align: right;padding-left: 4px;">    ></span> </button>
+        <a href="/analyse"><button class = "start-button"> Start with us <span style="font-size: 14px; text-align: right;padding-left: 4px;">    ></span> </button></a>
+    </div>
+
+    <div style="padding-top: 10px; text-align: center; ">
+        <h1>Analyse all your Social Media Stats in One Place </h1>
+
+    </div>
+
+
+    <div class = social-img style="padding-bottom: 31px;">
+        <img  src = "/static/video.png">
+        <img  src = "/static/social-media.png" >
+    </div>
+
+    <div class="container">
+        <div class="image-section">
+            <img src="/static/sm logo.webp" alt="Placeholder Image">
+        </div>
+
+        <div class="text-section-2">
+            <h1 style=" text-align: left;" >
+                Sit back, relax, and watch your social media stats
+            </h1>
+            </div>
+        
+    </div>
+
+    <footer style="
+    background-color: #1a1a1a; 
+    padding: 10px 20px; 
+    text-align: center; 
+    font-size: 14px; 
+    color: #e0e0e0;
+    margin:0; 
+    border-top: 2px solid #E03035; 
+    font-family: Parkinsans, sans-serif;">
+    <p style="margin: 0; line-height: 1.6;">
+        <h1 style="color: #E03035;">Disclaimer:</h1> 
+        <span>The information and insights provided on this website are based on Langflow, Google Generative AI, Astrastax Database and other data and analysis tools. 
+        We strive for accuracy but do not guarantee the completeness or reliability of the results. 
+        All content is for informational purposes only and should not be considered as professional advice.
+        This is a project, made for the pre Hackathon Assignment 
+        Users are responsible for their use of the information and any decisions made based on it. 
+        We do not endorse or take responsibility for any third-party content or links shared on this site.
+        </span>
+    </p>
+    <p style="margin-top: 10px; color: #9e9e9e;">
+        &copy; 2025 <span style="color:#E03035">Team 404</span>. All rights reserved.
+    </p>
+</footer>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+
+
+const menuButton = document.querySelector('.menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuIcon = document.querySelector('.menu-icon');
+        const closeIcon = document.querySelector('.close-icon');
+        let isMenuOpen = false;
+
+        menuButton.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                mobileMenu.classList.add('active');
+                menuIcon.style.display = 'none';
+                closeIcon.style.display = 'block';
+            } else {
+                mobileMenu.classList.remove('active');
+                menuIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+            }
+        });
+
+        // Close mobile menu when window is resized to desktop view
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && isMenuOpen) {
+                mobileMenu.classList.remove('active');
+                menuIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+                isMenuOpen = false;
+            }
+        });
+    </script>
+</body>
+</html>
+

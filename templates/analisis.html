@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Analyzer</title>
+    <link rel="stylesheet" href ="/static/2nd_page.css">
+    <link rel="stylesheet" href ="/static/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+</head>
+<style>
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .back-button:hover {
+            color: #666;
+        }
+
+        .back-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            padding: 8px 12px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #333;
+        }
+
+        .menu-button {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .menu-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #666;
+        }
+
+        .mobile-menu {
+            display: none;
+            padding: 12px 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .mobile-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: none;
+            }
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 20px;
+            height: 200vh;
+        }  
+
+   </style>
+
+<body>
+
+<nav>
+        <div class="nav-container" >
+            <div class="nav-content">
+                <!-- Back Button -->
+                <a href="#" class="back-button" onclick="history.back(); return false;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    <span>Back</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a onclick="showGuidelines();" href="#">Tips</a>
+                    <a href="#">Tutorial</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="menu-button" aria-label="Toggle menu">
+                    <svg class="menu-icon" viewBox="0 0 24 24">
+                        <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="close-icon" viewBox="0 0 24 24" style="display: none;">
+                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-menu">
+                <a href="/">Home</a>
+                <a onclick="showGuidelines();" href="#">Tips</a>
+                <a href="#">Tutorial</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="content" style = "margin-top:45px;">
+        <header>
+            <h1>Social Media Analyzer Tool</h1>
+        </header>
+    
+        <div class="container">
+            <div class="guidelines">
+                <button class="guidelines-btn" onclick="showGuidelines()">View Guidelines</button>
+            </div>
+            <div id="topi">
+                <!-- Error messages to be displayed -->
+            </div>
+            <div class="selection-area">
+                <select id="sel1">
+                    <option value="none">Select Post Type</option>
+                    <option value="reels">Reels</option>
+                    <option value="static">Static</option>
+                    <option value="caurosal">Caurosal</option>
+                </select>
+                <button class="go-btn" onclick="build()">Go</button>
+            </div>
+            <div id="rest" style="display:none;">
+                <div class="total-clicks">
+                    <h2>Count: <span id="count">0</span></h2>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <i class="fas fa-thumbs-up"></i>
+                        <h3>Average Likes</h3>
+                        <p id="Avg_likes">1,234</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-comment"></i>
+                        <h3>Average Comments</h3>
+                        <p id="Avg_comments">456</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-share"></i>
+                        <h3>Average Shares</h3>
+                        <p id="Avg_shares">789</p>
+                    </div>
+                </div>
+    
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Maximum Likes</h3>
+                        <p id="Max_likes">5,678</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-star"></i>
+                        <h3>Maximum Comments</h3>
+                        <p id="Max_comments">1,234</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-award"></i>
+                        <h3>Maximum Shares</h3>
+                        <p id="Max_shares">2,345</p>
+                    </div>
+                </div>
+                <!--correlation and ratio -->
+                <div class="container-2">
+                    <!-- Correlation Box -->
+                    <div class="single-box">
+                        <h2>Correlation</h2>
+                        <ul>
+                            <li>
+                                <span class="activity">Like & Comment</span>
+                                <span class="data" id="C_LC">0.35(data)</span>
+                            </li>
+                            <li>
+                                <span class="activity">Likes & Share</span>
+                                <span class="data" id="C_LS">0.887(data)</span>
+                            </li>
+                            <li>
+                                <span class="activity">Share & Comment</span>
+                                <span class="data" id = "C_SC">0.12(data)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Ratio Box -->
+                    <div class="single-box">
+                        <h2>Ratio</h2>
+                        <ul>
+                            <li>
+                                <span class="activity">Like/Comment</span>
+                                <span class="data" id="R_LC">0.45</span>
+                            </li>
+                            <li>
+                                <span class="activity">Share/Comment</span>
+                                <span class="data" id="R_SC">0.48</span>
+                            </li>
+                            <li>
+                                <span class="activity">Likes/Shares</span>
+                                <span class="data" id="R_LS">0.38</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            
+            
+                <div class="engagement-card">
+                    <h2>Highest Engagement Post</h2>
+                    <p class="engagement-text">
+                        among all type the highest engagement got this stats -
+                    </p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Likes</span>
+                            <span class="stat-value" id="H_likes">15.4K</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Comments</span>
+                            <span class="stat-value" id="H_comments">2.8K</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Shares</span>
+                            <span class="stat-value" id="H_shares">5.2K</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Post Type</span>
+                            <span class="stat-value" id="H_post_type">Static</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="engagement-card" id="insights">
+                <h2>Key Insights</h2>
+                <center><div id="loadIn" class="loaderMed" style="margin-bottom: 1vh;"></div></center>
+            </div>
+        </div>
+    </div>
+
+    <!-- chat model-->
+    <div class="cta-container">
+        <h1 class="cta-text">Get more analysis with our ChatBot</h1>
+        <button class="guidelines-btn" onclick="openModal()">Try Now</button>
+    </div>
+
+
+    <!-- Chat Modal -->
+    <div class="modal" id="chatModal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">×</button>
+            
+            <div class="chat-container" id="chatContainer">
+                <div class="message assistant-message">
+                    <div class="message-icon bot-icon">B</div>
+                    <div class="message-content">
+                        Hello! How can I help you today?
+                    </div>
+                </div>
+                
+            </div>
+            <div class="input-container">
+            <center><div id="loadNew" class="loaderSmall hidden" style="margin-bottom: 1vh;"></div></center>
+                <div class="input-wrapper">
+                    <textarea 
+                        class="input-box" 
+                        placeholder="Message ChatBot..." 
+                        id="messageInput"
+                    ></textarea>
+                    <button class="send-button" id="sendButton">
+                        <span class="send-icon"></span>
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <!-- Guidelines Modal -->
+    <div id="guidelinesModal" class="modal">
+        <div class="modal-content fitHeight">
+            <span class="close-modal" onclick="hideGuidelines()">&times;</span>
+            <h2>Guidelines</h2>
+            <p>1. Select your preferred post type from the dropdown menu.</p>
+            <p>2. Click the "Go" button to analyze your social media metrics.</p>
+            <p>3. View your engagement statistics including average and maximum values.</p>
+            <p>4. Check the overall analytics summary for insights and recommendations.</p>
+        </div>
+    </div>
+    <div id="popup-overlay" class="overlay hidden">
+        <div class="popup" id = "conit">
+            <div class="loader"></div>
+        </div>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+    <script>
+        function showGuidelines() {
+            document.getElementById('guidelinesModal').style.display = 'block';
+        }
+
+        function hideGuidelines() {
+            document.getElementById('guidelinesModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('guidelinesModal')) {
+                hideGuidelines();
+            }
+        }
+        async function build(){
+            var select = document.getElementById("sel1");
+            if (select.value == "none"){
+                message("danger","Error","Choose a post type from dropdown");
+            }else{
+                showPopup();
+                let messageText = await Go(`List every Stats you Know about ${select.value} as post type,
+                data must include following:-
+                Count,Max_likes,Max_comments,Max_shares,Avg_likes,Avg_comments,Avg_shares,
+                Correlation[Likes2Comments,Likes2Shares,Share2Comments],
+                Ratio[Likes2Comments,Likes2Shares,Share2Comments]
+                and give data(post type, likes, comments, shares) for Highest Engagement Post of all`);
+                if (messageText != undefined){
+                    const json = await fetchProcess(messageText);
+                    document.getElementById("rest").setAttribute("style","display:block;");
+                }else{
+                    message('danger',"Langflow Error","Langflow Limits Exhausted, or Sent an Invalid Response, check Workflow for details")
+                }
+                hidePopup();
+            }
+        }
+        async function message(type, head, body){
+            msg = `<div class="alert alert-${type} alert-dismissible fade show" role="alert"><strong>${head}</strong>: ${body}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button></div>`;
+            store = document.getElementById("topi"); 
+            store.innerHTML = msg+store.innerHTML;
+        }
+        function showPopup() {
+            document.getElementById('content').classList.add('blurred');
+            document.getElementById('popup-overlay').classList.remove('hidden');
+        }
+
+        function hidePopup() {
+            document.getElementById('content').classList.remove('blurred');
+            document.getElementById('popup-overlay').classList.add('hidden');
+        }
+        async function Go(inputValue) {
+            console.log(inputValue);
+            let data = JSON.stringify({
+                "query":inputValue
+            });
+            try {
+                let res = await fetch("/process", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: data,
+                });
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                let responseData = await res.json();
+                const messageText = responseData?.outputs?.[0]?.outputs?.[0]?.results?.message?.text;
+                console.log("Langflow Message Received, now formatting")
+                console.log(messageText)
+                return messageText;                
+            } catch (error) {
+                message("danger","Error connecting Langflow", error+", Unable to communicate with Langflow");
+            }
+        }
+        async function fetchProcess(text){
+            A = JSON.stringify({'prompt':text});
+            // A = JSON.stringify({'prompt':'\ncount: 329 posts\nAverage Likes: 285.05\nMaximum Likes: 499\nMinimum Likes: Not Specified, but can be inferrer greater than or equal to 50, the Overall minimum,\nAverage Shares: 54.85\nmaximum Shares: 100\nMinimum Shares: Not Specified, but can be inferrer greater than or equal to 5, the Overall minimum,\nAverage Comments: 96.85\nMaximum Comments: Not Specified, but can be inferrer less than or equal to 200, the Overall maximum,\nMinimum Comments: Not Specified, but can be inferrer greater than or equal to 10, the Overall minimum,\nLikes to share Ratio: 5.19\nLikes to Comments ratio: 2.94\nshares to comments ratio: 0.57\nCorrelation (likes & shares): 0.03\nCorrelation (likes & comments): 0.02\nCorrelation (comments & shares): 0.02\nHighest Engagement Post: One reel post: 491 Likes, 81 Shares and 196 comments, Dominates 10% of engaging posts\n'});
+            try {
+                let res = await fetch("/jsonif", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: A,
+                });
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                let responseData = await res.json();
+                setData(responseData);
+            } catch (error) {
+                message("danger","Error", error+", Unable to Fetch data from Backend");
+            }
+        }
+        async function makeHtml(markdown) {
+            try {
+                let res = await fetch("/html", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ markdown }),
+                });
+
+                let data = await res.text();
+                return data;
+            } catch (error) {
+                message("danger","Error", error);
+            }
+        }
+        function setData(data){
+            Dat = {
+                "Max_likes":data["Max_likes"],
+                "Max_comments":data["Max_comments"],
+                "Max_shares":data["Max_shares"],
+                "Avg_likes":data["Avg_likes"],
+                "Avg_comments":data["Avg_comments"],
+                "Avg_shares":data["Avg_shares"],
+                "C_LC":data["Correlation"]["Likes2Comments"],
+                "C_LS":data["Correlation"]["Likes2Shares"],
+                "C_SC":data["Correlation"]["Share2Comments"],
+                "R_LC":data["Ratio"]["Likes2Comments"],
+                "R_LS":data["Ratio"]["Likes2Shares"],
+                "R_SC":data["Ratio"]["Share2Comments"],
+                "H_likes":data["Highest"]["likes"],
+                "H_comments":data["Highest"]["comments"],
+                "H_shares":data["Highest"]["shares"],
+                "H_post_type":data["Highest"]["post_type"],
+                "count":data["count"]
+            }
+            for (const [key, value] of Object.entries(Dat)) {
+                document.getElementById(key).innerHTML = value;
+            }
+            
+        }
+
+        function openModal() {
+            document.getElementById('chatModal').style.display = 'block';
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function closeModal() {
+            document.getElementById('chatModal').style.display = 'none';
+        }
+
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'assistant-message'}`;
+            
+            const iconDiv = document.createElement('div');
+            iconDiv.className = `message-icon ${isUser ? 'user-icon' : 'bot-icon'}`;
+            iconDiv.textContent = isUser ? 'U' : 'B';
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = content;
+            
+            messageDiv.appendChild(iconDiv);
+            messageDiv.appendChild(contentDiv);
+            chatContainer.appendChild(messageDiv);
+            
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        function startThinking(){
+            messageInput.disabled = true;
+            sendButton.disables = true;
+            document.getElementById("loadNew").classList.remove("hidden")
+        }
+        function stopThinking(){
+            document.getElementById("loadNew").classList.add("hidden")
+            messageInput.disabled = false;
+            sendButton.disabled=false;
+            messageInput.value = "";
+        }
+        async function sendMessage() {
+            startThinking();
+            const message = messageInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                let markdownResponse = await Go(message);
+                let response = await makeHtml(markdownResponse);
+                addMessage(response);
+                messageInput.value = '';
+                messageInput.style.height = 'auto';
+            }
+            stopThinking();
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        messageInput.addEventListener('input', () => {
+            messageInput.style.height = 'auto';
+            const newHeight = Math.min(messageInput.scrollHeight, 150);
+            messageInput.style.height = newHeight + 'px';
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('chatModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        const menuButton = document.querySelector('.menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuIcon = document.querySelector('.menu-icon');
+        const closeIcon = document.querySelector('.close-icon');
+        let isMenuOpen = false;
+
+        menuButton.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                mobileMenu.classList.add('active');
+                menuIcon.style.display = 'none';
+                closeIcon.style.display = 'block';
+            } else {
+                mobileMenu.classList.remove('active');
+                menuIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && isMenuOpen) {
+                mobileMenu.classList.remove('active');
+                menuIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+                isMenuOpen = false;
+            }
+        });
+        async function So(dd){
+            return `Key Insights from Social Media Data Analysis:
+
+* **Reels Reign Supreme:** Reels outperform other post types with the highest average likes (285), shares (55), and overall engagement.  The top-performing post is also a Reel.
+
+* **Static Posts Hold Their Own:** While Reels have higher average engagement, Static posts see the highest number of comments (average 106 and maximum 200) suggesting potential for deeper audience interaction.
+
+* **Carousels Maintain Consistency:** Carousels demonstrate balanced engagement across metrics, though slightly lower than Reels and Static posts in terms of averages.
+
+* **Weak Correlation Between Metrics:**  Likes, shares, and comments show minimal correlation across all post types, indicating that high likes don't necessarily translate to high shares or comments, and vice-versa.
+
+* **Limited Outliers:** The dataset contains no extreme outliers, suggesting consistent engagement patterns.`;
+        }
+Go("Generate Key Insights for whole data, in Text format, Respond with Well Pharesed Key Points of analysis from the provided data!!").then((markRes) =>{
+    return makeHtml(markRes);
+}).then((htmlRes) =>{
+    document.getElementById("insights").innerHTML += htmlRes;
+    document.getElementById("loadIn").classList.add("hidden");
+})
+
+
+    </script>
+</body>
+</html>
