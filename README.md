@@ -2,6 +2,12 @@
 
 Welcome to the **Social Media Analyzer Tool** repository! This project is a comprehensive solution to analyze and understand your social media metrics, helping you optimize your content strategy and drive better engagement. Python (Flask) based Social media metrics analyzer tool, Langflow and AstraDB integrated with Google generative AI
 
+### Instructions:
+1. To install the dependencies, use:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
 ## 🚀 Features
 
 - **Real-time Social Media Analytics**: Analyze post types (Reels, Static, Carousel) and extract meaningful insights.
